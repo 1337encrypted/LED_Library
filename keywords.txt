@@ -1,0 +1,9 @@
+# Datatypes (KEYWORD1)
+led	KEYWORD1
+
+# Methods and Functions (KEYWORD2)
+begin	KEYWORD2
+~led	KEYWORD2
+on	KEYWORD2
+Off	KEYWORD2
+toggle	KEYWORD2
