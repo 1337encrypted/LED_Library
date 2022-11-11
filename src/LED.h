@@ -10,12 +10,10 @@
 
 class led
 {
-  private:
+  public:
   //ledPin pins for function feedback
   uint8_t ledPin;
 
-  public:
-  
   //Function prototypes
   inline led() __attribute__((always_inline));
   inline led(uint8_t) __attribute__((always_inline));
@@ -26,11 +24,17 @@ class led
   inline void toggle() __attribute__((always_inline));
 };
 
-//Default constructor
-led::led()
+////Default constructor
+//led::led()
+//{
+//  //Initilize the ledPin pins
+//  this->ledPin = 13;
+//}
+
+void led::begin()
 {
-  //Initilize the ledPin pins
-  this->ledPin = 13;
+  // ledPin pins set as output
+  pinMode(ledPin, OUTPUT);
 }
 
 //parametrized constructor
@@ -46,12 +50,6 @@ led::~led()
   Serial.println("led object destroyed");
 }
 
-void led::begin()
-{
-  // ledPin pins set as output
-  pinMode(ledPin, OUTPUT);
-}
-
 void led::on()
 {
   digitalWrite(ledPin, HIGH); 
@@ -64,8 +62,8 @@ void led::off()
 
 void led::toggle()
 {
-  static unsigned long ledMillis = millis();                    //Assigns the current snapshot of time only the first
-                                                                //time this code executes
+  static unsigned long ledMillis = millis();    //Assigns the current snapshot of time only the first
+                                              //time this code executes
   if(millis() - ledMillis > 700)
   {
     digitalWrite(ledPin, !digitalRead(ledPin));
